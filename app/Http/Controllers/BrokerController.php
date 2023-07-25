@@ -22,7 +22,7 @@ class BrokerController extends Controller
      */
     public function store(StoreBrokerRequest $request)
     {
-        $request->validated($request->all());
+        $request->validated();
 
         $broker = Broker::create([
             'name'=>$request->name,

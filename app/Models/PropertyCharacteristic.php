@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PropertyCharacteristic extends Model
 {
     use HasFactory;
-    protected $fillable = ['property_id','price','bedrooms','bathrooms','sqft','price_sqft','enum','enum'];
+    protected $fillable = ['property_id','price','bedrooms','bathrooms','sqft','price_sqft','property_type','status'];
+
+    public function property(){
+        return $this->hasOne(Property::class);
+    }
 }
+

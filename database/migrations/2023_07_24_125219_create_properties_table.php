@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('city')->required();
             $table->string('zip_code')->required();
             $table->longText('description')->required();
-            $table->year('build_year')->required();
+            $table->year('build_year')->default();
             $table->foreign('broker_id')
             ->references('id')
             ->on('brokers')
