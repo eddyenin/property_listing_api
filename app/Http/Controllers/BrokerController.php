@@ -33,30 +33,32 @@ class BrokerController extends Controller
             'image_path'=>$request->image_path
         ]);
 
-        return response()->json(['status'=>true,'message'=>'Registered successfully','broker'=>$broker],200);
+        return response()->json(['status'=>true,'message'=>'Registered successfully','broker'=> new BrokersResource($broker)],200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Broker $broker)
     {
-        //
+        return new BrokersResource($broker);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreBrokerRequest $request, Broker $broker)
     {
-        //
+        $broker->update($request->only(['name','address','city','zip_code','phone_number','image_path']));
+        return new BrokersResource($broker);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Broker $broker)
     {
-        //
+        $broker->delete();
+        return response()->json(['message'=>'Broker deleted successfully'],200);
     }
 }
